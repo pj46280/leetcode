@@ -3,15 +3,20 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        i=len(nums) - 1
-        while i >= 0:
-            if nums[i] > nums[i-1] and (i-1) >= 0:
-                nums[i], nums[i-1] = nums[i-1], nums[i]
-                return nums
+        i = len(nums) - 2
+        while i >= 0 and nums[i] >= nums[i+1]:
             i -= 1
+        if i >= 0:
+            j = len(nums) - 1
+            while nums[j] <= nums[i]:
+                j-=1
+            nums[i], nums[j] = nums[j], nums[i]
+        l, r = i+1, len(nums) - 1
+        while l < r:
+            nums[l], nums[r] = nums[r], nums[l]
+            l, r = l+1, r-1
 
-        return nums[::-1]
-
+        return nums
 
 # nums: 9 2 4 1 5
 # nums: 2 7 6 5 4
