@@ -1,17 +1,17 @@
-import math
 class Solution:
-    def permute(self, nums: list[int]) -> list[list[int]]:
-        res = [nums]
-        pointer, counter = 0, 0
-        n = math.factorial(len(nums)) - 1
-        while counter != n:
-            temp = nums
-            temp[pointer-1], temp[pointer] = temp[pointer], temp[pointer-1]
-            if temp in res:
-                pointer = pointer - 1
-            else:
-                res.append(temp)
-                counter += 1
+    #def permute(self, nums: List[int]) -> List[List[int]]:
+    def permute(self, nums):
+        if len(nums) == 0:
+            return [[]]
+
+        perms = self.permute(nums[1:])
+
+        res = []
+        for p in perms:
+            for i in range(len(p)+1):
+                p_copy = p.copy()
+                p_copy.insert(i, nums[0])
+                res.append(p_copy)
 
         return res
 
@@ -25,6 +25,7 @@ class Solution:
 #   b. if not add it into res
 
 
-nums = [1,2,3]
+# nums = [1,2,3]
+nums = [0, 1]
 s = Solution()
 print(s.permute(nums))
