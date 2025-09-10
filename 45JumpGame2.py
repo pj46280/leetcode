@@ -1,5 +1,5 @@
 class Solution:
-    def jump(self, nums: List[int]) -> int:
+    def jump(self, nums):
         jumps = 0
         l, r = (0, 0)
         while r < len(nums) - 1:
@@ -11,3 +11,8 @@ class Solution:
             jumps += 1
             
         return jumps
+
+nums = [3,2,1,0,4]
+s = Solution()
+print(s.jump(nums))
+
