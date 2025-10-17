@@ -20,6 +20,26 @@ class Solution:
                 m += 2*(numRows - 1)
 
         return string
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows == 1 or numRows >= len(s):
+            return s
+            
+        rows = [""] * numRows
+        step = 1
+        curr = 0
+
+        for ch in s:
+            rows[curr] += ch
+            if curr == 0:
+                step = 1
+            elif curr == numRows - 1:
+                step = -1
+
+            curr += step
+
+        return "".join(rows)
+
 
 string, numRows = "PAYPALISHIRING", 3
 s = Solution()
